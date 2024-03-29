@@ -1,3 +1,4 @@
+import { pokemonApi } from '../../../api/pokemonApi';
 import { setPokemnos, startLoandingPokemons } from './';
 
 const records = 10;
@@ -17,16 +18,18 @@ export const getPokemons = ( page = 0 ) => {
   return async ( dispatch, getState ) => {
     dispatch( startLoandingPokemons() );
 
-    const resp = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?limit=${ records }&offset=${ page * records}`
-    );
-    const data = await resp.json();
-    //console.log(data);
+    // const resp = await fetch(
+    //   `https://pokeapi.co/api/v2/pokemon?limit=${ records }&offset=${ page * records}`
+    // );
+    // const data = await resp.json();
+    
+    const resp = await pokemonApi.get(`/pokemon?limit=${ records }&offset=${ page * records}`);
+    console.log(resp);
 
     const pokeResp : PokemonList = {
-      count: data.count,
+      count: resp.data.count,
       page: page + 1,
-      pokemons: data.results,
+      pokemons: resp.data.results,
     };
 
     dispatch( setPokemnos( pokeResp ));
