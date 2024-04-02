@@ -24,7 +24,7 @@ export const getPokemons = ( page = 0 ) => {
     // const data = await resp.json();
     
     const resp = await pokemonApi.get(`/pokemon?limit=${ records }&offset=${ page * records}`);
-    console.log(resp);
+    //console.log(resp);
 
     const pokeResp : PokemonList = {
       count: resp.data.count,
