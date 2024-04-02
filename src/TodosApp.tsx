@@ -1,4 +1,4 @@
-import { useGetTodosQuery } from "./store/api/todosApi"
+import { useGetTodosQuery, TodoData } from './store/api/todosApi';
 
 export const TodosApp = () => {
 
@@ -10,16 +10,16 @@ export const TodosApp = () => {
     <>
       <h1>TODO App - RTK Query</h1>
       <h4>Is Loading: { isLoading ? 'True' : 'False' }</h4>
-      <pre>hola</pre>
+      {/* <pre>hola</pre> */}
       <ul>
-        { todos.map( todo => (
+        { todos.map( (todo: TodoData) => (
           <li key={ todo.id }>
             <strong>{ todo.completed ? 'Done' : 'Pending' } - </strong>
             { todo.title }
           </li>
         ) ) }
       </ul>
-      <button>Next Todo</button>
+      {/* <button>Next Todo</button> */}
     </>
   )
 }
